@@ -101,8 +101,8 @@ protected
     raise "The pem configuration must be a string with the .pem content" unless self.pem.is_a?(String)
 
     context      = OpenSSL::SSL::SSLContext.new
-    context.cert = OpenSSL::X509::Certificate.new(File.read(self.pem))
-    context.key  = OpenSSL::PKey::RSA.new(File.read(self.pem), self.pass)
+    context.cert = OpenSSL::X509::Certificate.new(self.pem)
+    context.key  = OpenSSL::PKey::RSA.new(self.pem, self.pass)
 
     sock         = TCPSocket.new(self.host, self.port)
     ssl          = OpenSSL::SSL::SSLSocket.new(sock,context)
@@ -115,8 +115,8 @@ protected
     raise "The pem configuration must be a string with the .pem content" unless self.pem.is_a?(String)
 
     context      = OpenSSL::SSL::SSLContext.new
-    context.cert = OpenSSL::X509::Certificate.new(File.read(self.pem))
-    context.key  = OpenSSL::PKey::RSA.new(File.read(self.pem), self.pass)
+    context.cert = OpenSSL::X509::Certificate.new(self.pem)
+    context.key  = OpenSSL::PKey::RSA.new(self.pem, self.pass)
 
     fhost = self.host.gsub('gateway','feedback')
 
